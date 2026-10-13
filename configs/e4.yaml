@@ -1,6 +1,12 @@
 name: E4
-description: Ablation tự chọn. Chọn ĐÚNG MỘT biến để đổi, giữ mọi thứ khác như setup tốt nhất trong E1–E3.
-options:
-  rank: {values: [4, 64], note: "đổi lora.r (đặt alpha = 2*r)"}
-  data_size: {values: [0.1, 1.0], note: "train_fraction; 0.1 = 10% số ảnh train"}
-  coord_scale: {values: [norm1000, pixel], note: "đổi thang toạ độ trong cả nhãn lẫn prompt; chấm bằng --coord tương ứng"}
+description: Rank ablation against E1; only LoRA rank changes, all other variables stay aligned with E1.
+model_id: Qwen/Qwen3-VL-4B-Instruct
+quantization: nf4-4bit
+lora: {r: 4, alpha: 8, dropout: 0.05, targets: llm}
+train_projector: false
+lr: 2.0e-4
+batch_size: 2
+grad_accum: 4
+max_steps: 300
+seed: 42
+ablation: {variable: rank, value: 4, baseline: E1}
