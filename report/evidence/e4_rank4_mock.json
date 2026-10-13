@@ -1,0 +1,66 @@
+{
+  "score_version": 1,
+  "name": "e4_rank4_ablation_mock",
+  "dataset_version": "d10-21e4070301",
+  "split": "test",
+  "coord": "norm1000",
+  "n_images": 311,
+  "parse_valid_rate": 0.977,
+  "missing_predictions": 0,
+  "micro": {
+    "precision": 0.3986784141,
+    "recall": 0.3104631218,
+    "f1": 0.3494208494,
+    "tp": 181,
+    "fp": 273,
+    "fn": 402
+  },
+  "per_class": {
+    "pothole": {
+      "precision": 0.3552631579,
+      "recall": 0.2231404959,
+      "f1": 0.2741116751,
+      "tp": 27,
+      "fp": 49,
+      "fn": 94
+    },
+    "crack": {
+      "precision": 0.3914728682,
+      "recall": 0.3377926421,
+      "f1": 0.3626570916,
+      "tp": 101,
+      "fp": 157,
+      "fn": 198
+    },
+    "manhole": {
+      "precision": 0.4416666667,
+      "recall": 0.3251533742,
+      "f1": 0.3745583039,
+      "tp": 53,
+      "fp": 67,
+      "fn": 110
+    },
+    "other": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+    }
+  },
+  "mean_iou": 0.626,
+  "fp_per_image": 0.8778135048,
+  "f1_ci95": [
+    0.309,
+    0.391
+  ],
+  "meta": {
+    "trainable_params": 8388608,
+    "peak_vram_gb": 8.8,
+    "train_minutes": 23,
+    "ablation": "rank=4 compared with E1 rank=16",
+    "mock": true,
+    "note": "MOCK TEMPLATE ONLY - replace with score.py output after running E4."
+  }
+}

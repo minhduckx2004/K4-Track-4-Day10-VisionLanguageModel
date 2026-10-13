@@ -1,6 +1,5 @@
 Ho ten: Nguyễn Minh Đức
 MSSV: 2A202602783
-<!-- <điền sau khi chạy Colab>: marker template để pytest gốc của đề pass; lệnh src.report_from_evidence sẽ xoá dòng này khi tạo report nộp cuối. -->
 `dataset_version`: d10-21e4070301
 
 ## Bang tong hop

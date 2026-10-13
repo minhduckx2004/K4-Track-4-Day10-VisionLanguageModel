@@ -1,0 +1,65 @@
+{
+  "score_version": 1,
+  "name": "e2_projector_mock",
+  "dataset_version": "d10-21e4070301",
+  "split": "test",
+  "coord": "norm1000",
+  "n_images": 311,
+  "parse_valid_rate": 0.99,
+  "missing_predictions": 0,
+  "micro": {
+    "precision": 0.4697580645,
+    "recall": 0.4003430532,
+    "f1": 0.4322820037,
+    "tp": 233,
+    "fp": 263,
+    "fn": 350
+  },
+  "per_class": {
+    "pothole": {
+      "precision": 0.4193548387,
+      "recall": 0.3223140496,
+      "f1": 0.3644859813,
+      "tp": 39,
+      "fp": 54,
+      "fn": 82
+    },
+    "crack": {
+      "precision": 0.4578754579,
+      "recall": 0.4180602007,
+      "f1": 0.4370629371,
+      "tp": 125,
+      "fp": 148,
+      "fn": 174
+    },
+    "manhole": {
+      "precision": 0.53125,
+      "recall": 0.4233128834,
+      "f1": 0.4710382514,
+      "tp": 69,
+      "fp": 61,
+      "fn": 94
+    },
+    "other": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+    }
+  },
+  "mean_iou": 0.662,
+  "fp_per_image": 0.845659164,
+  "f1_ci95": [
+    0.389,
+    0.475
+  ],
+  "meta": {
+    "trainable_params": 142606336,
+    "peak_vram_gb": 11.2,
+    "train_minutes": 32,
+    "mock": true,
+    "note": "MOCK TEMPLATE ONLY - replace with score.py output after running E2."
+  }
+}

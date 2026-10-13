@@ -1,0 +1,62 @@
+{
+  "score_version": 1,
+  "name": "e0_zero_shot_mock",
+  "dataset_version": "d10-21e4070301",
+  "split": "test",
+  "coord": "norm1000",
+  "n_images": 311,
+  "parse_valid_rate": 0.934,
+  "missing_predictions": 0,
+  "micro": {
+    "precision": 0.2140077821,
+    "recall": 0.1886792453,
+    "f1": 0.2005464481,
+    "tp": 110,
+    "fp": 404,
+    "fn": 473
+  },
+  "per_class": {
+    "pothole": {
+      "precision": 0.1818181818,
+      "recall": 0.1487603306,
+      "f1": 0.1636363636,
+      "tp": 18,
+      "fp": 81,
+      "fn": 103
+    },
+    "crack": {
+      "precision": 0.2068965517,
+      "recall": 0.2006688963,
+      "f1": 0.2037351443,
+      "tp": 60,
+      "fp": 230,
+      "fn": 239
+    },
+    "manhole": {
+      "precision": 0.256,
+      "recall": 0.1963190184,
+      "f1": 0.2222222222,
+      "tp": 32,
+      "fp": 93,
+      "fn": 131
+    },
+    "other": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0
+    }
+  },
+  "mean_iou": 0.592,
+  "fp_per_image": 1.2990353698,
+  "f1_ci95": [
+    0.164,
+    0.237
+  ],
+  "meta": {
+    "mock": true,
+    "note": "MOCK TEMPLATE ONLY - replace with score.py output after running E0."
+  }
+}
