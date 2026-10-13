@@ -1,6 +1,7 @@
-Ho ten: CHUA_DIEN
+Ho ten: Nguyễn Minh Đức
+MSSV: 2A202602783
 <!-- <điền sau khi chạy Colab>: marker template để pytest gốc của đề pass; lệnh src.report_from_evidence sẽ xoá dòng này khi tạo report nộp cuối. -->
-`dataset_version`: CHUA_CHAY
+`dataset_version`: d10-21e4070301
 
 ## Bang tong hop
 
@@ -30,7 +31,7 @@ Chi tinh loss tren cau tra loi vi prompt va token anh la dieu kien dau vao, khon
 Projector can cap nhat day du nen khong duoc de no nam trong trong so luong tu 4-bit; tham so 4-bit khong phu hop cho full fine-tune truc tiep. Cach xu ly la skip visual/lm_head khi quantize va dua visual.merger, visual.deepstack_merger_list ve float32 khi E2/E3.
 
 ### Câu 6 - Split theo phien quay
-Chia ngau nhien lam ro ri vi cac frame lien ke rat giong nhau, khien train va test co canh gan trung lap va F1 cao gia. Dien so anh/box tung split tu inspect_splits() sau khi prepare_data.py sinh data/splits.
+Chia ngau nhien lam ro ri vi cac frame lien ke rat giong nhau, khien train va test co canh gan trung lap va F1 cao gia. Split that da chay tu archive.zip co dataset_version d10-21e4070301 va khong co session leak. Train co 1422 anh voi 1074 pothole, 1750 crack, 691 manhole; val co 276 anh voi 66 pothole, 470 crack, 103 manhole; test co 311 anh voi 121 pothole, 299 crack, 163 manhole.
 
 ### Câu 7 - So sanh E1/E2/E3
 Dien ket luan tu bang tren sau khi chay. Chi nen noi setup tot hon ro rang neu chen lech F1 vuot dang ke so voi CI95 va chi phi VRAM/thoi gian chap nhan duoc.
@@ -45,4 +46,4 @@ Dua vao F1 tung lop va anh minh hoa trong report/figures. Lop kem thuong do box 
 E4 hien cau hinh rank=4 so voi baseline E1 rank=16, chi doi mot bien la LoRA rank. Dien F1/CI95 cua E4 va E1 sau khi chay de ket luan rank thap co lam giam ket qua dang tin hay khong.
 
 ## Nhin lai
-Can bo sung cac so CHUA_CHAY bang ket qua that tu Colab truoc khi nop. Khong commit data/, work/, adapter hoac trong so model.
+Da chay prepare_data.py that tu archive.zip tren Windows va tao 6 anh minh hoa ground-truth trong report/figures. May local chi co RTX 3050 4GB VRAM, khong du 9-12GB VRAM de chay Qwen3-VL-4B QLoRA; can chay E0-E4 tren Google Colab T4 de sinh report/evidence/*.json that. Khong commit data/, work/, adapter hoac trong so model.
