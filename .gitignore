@@ -8,6 +8,7 @@ __pycache__/
 *.bin
 *.pt
 *.ckpt
+archive.zip
 adapter*/
 .ipynb_checkpoints/
 .pytest_cache/
