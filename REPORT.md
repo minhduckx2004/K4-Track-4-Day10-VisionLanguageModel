@@ -1,48 +1,47 @@
-Họ tên: <điền họ tên>
-`dataset_version`: <điền, lấy từ data/splits/meta.json>
+Ho ten: CHUA_DIEN
+`dataset_version`: CHUA_CHAY
 
-## Bảng tổng hợp (số của bạn, lấy từ `report/evidence/*.json`)
+## Bang tong hop
 
-| Mã | Setup | Tham số huấn luyện | VRAM đỉnh (GB) | Phút | F1 | CI95 | FP/ảnh | F1 pothole | F1 crack | F1 manhole |
-|---|---|---|---|---|---|---|---|---|---|---|
-| E0 | zero-shot | 0 | | | | | | | | |
-| E1 | LoRA LLM | | | | | | | | | |
-| E2 | + projector | | | | | | | | | |
-| E3 | + LoRA ViT | | | | | | | | | |
-| E4 | (ghi biến và giá trị) | | | | | | | | | |
+| Ma | Setup | Tham so huan luyen | VRAM dinh (GB) | Phut | F1 | CI95 | FP/anh | F1 pothole | F1 crack | F1 manhole |
+|---|---|---:|---:|---:|---:|---|---:|---:|---:|---:|
+| E0 | zero-shot | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY |
+| E1 | LoRA LLM | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY |
+| E2 | + projector | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY |
+| E3 | + LoRA ViT | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY |
+| E4 | rank ablation r=4 | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY | CHUA_CHAY |
 
-## 10 câu hỏi (trả lời bằng **số của bạn**, không chép lại tài liệu)
+## 10 cau hoi
 
-### Câu 1 — Kiến trúc: ViT, projector và LLM của Qwen3-VL-4B có bao nhiêu tham số mỗi khối, và E1/E2/E3 mỗi cái cập nhật khối nào?
-<điền>
+### Câu 1 - Kien truc
+Qwen3-VL-4B gom LLM khoang 4.0B tham so, ViT khoang 415M tham so, projector gom visual.merger khoang 27M va visual.deepstack_merger_list khoang 82M. E1 chi cap nhat LoRA tren LLM; E2 them projector day du; E3 them LoRA tren cac khoi attention/MLP cua ViT.
 
-### Câu 2 — E0: `parse_valid_rate` bằng bao nhiêu, và hai lỗi phổ biến nhất của model gốc là gì (kèm một ví dụ output thô)?
-<điền>
+### Câu 2 - E0
+Lay parse_valid_rate va vi du output tho tu report/evidence/e0.json va work/e0.jsonl sau khi chay. Hai loi can kiem tra la JSON khong hop le/bi boc markdown va sai thang toa do hoac bia box.
 
-### Câu 3 — Thang 0–1000: nếu chấm output theo pixel (hoặc ngược lại) thì F1 ra sao và vì sao? Bạn đã kiểm chứng điều này thế nào?
-<điền>
+### Câu 3 - Thang 0-1000
+Qwen grounding dung toa do tuong doi 0-1000 de doc lap voi kich thuoc anh. Neu train/cham lech pixel voi norm1000, IoU bi sai ty le nen F1 thuong gan 0 du JSON hop le. Kiem chung bang E4 coord_scale hoac chay score.py voi --coord nguoc lai.
 
-### Câu 4 — Mask loss: vì sao chỉ tính loss trên phần trả lời? Điều gì xảy ra nếu tính trên cả prompt và token ảnh?
-<điền>
+### Câu 4 - Mask loss
+Chi tinh loss tren cau tra loi vi prompt va token anh la dieu kien dau vao, khong phai noi dung can bat model sinh lai. Neu tinh loss tren prompt/token anh, gradient bi tieu ton de hoc copy template va token dac biet, lam yeu tin hieu hoc JSON box.
 
-### Câu 5 — Vì sao không thể huấn luyện đầy đủ projector nếu ViT bị lượng tử hoá 4-bit, và bạn đã xử lý thế nào? Vì sao projector phải ở float32?
-<điền>
+### Câu 5 - Projector va 4-bit
+Projector can cap nhat day du nen khong duoc de no nam trong trong so luong tu 4-bit; tham so 4-bit khong phu hop cho full fine-tune truc tiep. Cach xu ly la skip visual/lm_head khi quantize va dua visual.merger, visual.deepstack_merger_list ve float32 khi E2/E3.
 
-### Câu 6 — Split theo phiên quay: vì sao chia ngẫu nhiên sẽ cho F1 cao giả? Số ảnh và số box từng lớp ở mỗi split là bao nhiêu?
-<điền>
+### Câu 6 - Split theo phien quay
+Chia ngau nhien lam ro ri vi cac frame lien ke rat giong nhau, khien train va test co canh gan trung lap va F1 cao gia. Dien so anh/box tung split tu inspect_splits() sau khi prepare_data.py sinh data/splits.
 
-### Câu 7 — So sánh E1/E2/E3: mở projector và LoRA trên ViT có đáng không (F1, CI95, VRAM, thời gian)?
-<điền>
+### Câu 7 - So sanh E1/E2/E3
+Dien ket luan tu bang tren sau khi chay. Chi nen noi setup tot hon ro rang neu chen lech F1 vuot dang ke so voi CI95 va chi phi VRAM/thoi gian chap nhan duoc.
 
-### Câu 8 — Tập test có 311 ảnh: khoảng tin cậy rộng thế nào, và điều đó giới hạn kết luận so sánh các setup ra sao?
-<điền>
+### Câu 8 - Tap test nho
+Tap test 311 anh lam CI95 co the rong, nen cac chen lech F1 nho hoac CI chong lap khong du manh de ket luan setup A hon setup B.
 
-### Câu 9 — Phân tích lỗi theo lớp: lớp nào kém nhất và vì sao (kích thước box, số mẫu, ngữ nghĩa)? Kèm ảnh minh hoạ.
-<điền>
+### Câu 9 - Loi theo lop
+Dua vao F1 tung lop va anh minh hoa trong report/figures. Lop kem thuong do box nho, it mau trong split, hoac bien dang hinh hoc de nham voi nen duong.
 
-### Câu 10 — E4: bạn đổi biến nào, kết quả thế nào, và kết luận có đáng tin không?
-<điền>
+### Câu 10 - E4
+E4 hien cau hinh rank=4 so voi baseline E1 rank=16, chi doi mot bien la LoRA rank. Dien F1/CI95 cua E4 va E1 sau khi chay de ket luan rank thap co lam giam ket qua dang tin hay khong.
 
-## Nhìn lại
-
-<điền: điều bạn chưa hiểu, lỗi dữ liệu hoặc mô hình bạn gặp mà công cụ chấm chưa bắt được>
+## Nhin lai
+Can bo sung cac so CHUA_CHAY bang ket qua that tu Colab truoc khi nop. Khong commit data/, work/, adapter hoac trong so model.
