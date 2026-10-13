@@ -261,8 +261,15 @@ def encode_example(processor, image: Image.Image, prompt: str, answer: str) -> d
     labels = full_enc["input_ids"].clone()
     labels[:, :n] = -100
     full_enc["labels"] = labels
-    return {k: v.squeeze(0) if isinstance(v, torch.Tensor) and v.shape[:1] == (1,) else v
-            for k, v in full_enc.items()}
+    # Sequence-like tensors are padded later, so remove only their batch axis.
+    # Vision tensors such as image_grid_thw must stay 2D ([n_images, 3]).
+    out = {}
+    for k, v in full_enc.items():
+        if isinstance(v, torch.Tensor) and k in {"input_ids", "attention_mask", "labels", "mm_token_type_ids"}:
+            out[k] = v.squeeze(0)
+        else:
+            out[k] = v
+    return out
 
 
 def make_collate(processor):
