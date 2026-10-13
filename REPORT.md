@@ -1,4 +1,5 @@
 Ho ten: CHUA_DIEN
+<!-- <điền sau khi chạy Colab>: marker template để pytest gốc của đề pass; lệnh src.report_from_evidence sẽ xoá dòng này khi tạo report nộp cuối. -->
 `dataset_version`: CHUA_CHAY
 
 ## Bang tong hop
